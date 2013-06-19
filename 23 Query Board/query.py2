@@ -1,0 +1,71 @@
+#!/usr/bin/env python
+
+import sys
+import fileinput
+import string
+
+"""
+There is a board (matrix). Every cell of the board contains one integer, which is 0 initially.
+
+The next operations can be applied to the Query Board:
+SetRow i x: it means that all values in the cells on row "i" have been changed to value "x" after this operation.
+SetCol j x: it means that all values in the cells on column "j" have been changed to value "x" after this operation.
+QueryRow i: it means that you should output the sum of values on row "i".
+QueryCol j: it means that you should output the sum of values on column "j".
+
+The board's dimensions are 256x256
+"i" and "j" are integers from 0 to 255
+"x" is an integer from 0 to 31
+"""
+
+def queryBoard(board,line):
+	line = line.split()
+
+	if len(line) == 3:
+		#Set commands
+		if line[0] == 'SetRow':
+			board = setRow(board,line[1],line[2])
+		else:
+			board = setCol(board,line[1],line[2])
+	else:
+		if line[0] == 'QueryRow':
+			queryRow(board,line[1])
+		else:
+			queryCol(board,line[1])
+
+	return board
+
+def setRow(board,row,val):
+#SetRow i x: it means that all values in the cells on row "i" have been changed to value "x" after this operation.
+	for i in range(256):
+		board[int(row)][int(i)] = int(val)
+	return board
+
+def setCol(board,col,val):
+#SetCol j x: it means that all values in the cells on column "j" have been changed to value "x" after this operation.	
+	for j in range(256):
+		board[int(j)][int(col)] = int(val)
+	return board
+
+def queryRow(board,row):
+#QueryRow i: it means that you should output the sum of values on row "i".
+	sumrow = 0
+	for i in range(256):
+		sumrow += board[int(row)][int(i)]
+	print sumrow
+
+def queryCol(board,col):
+#QueryCol j: it means that you should output the sum of values on column "j".
+	sumcol = 0
+	for j in range(256):
+		sumcol += board[int(j)][int(col)]
+	print sumcol
+
+def myfileInput(file):
+	board = [ [ 0 for i in range(256) ] for j in range(256) ]
+
+	for line in fileinput.input([file]):
+		board = queryBoard(board,line.rstrip().strip())
+
+if __name__=="__main__":
+	myfileInput(sys.argv[1])
