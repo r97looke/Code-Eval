@@ -3,21 +3,21 @@
 import sys
 import fileinput
 
+
+def find_Writer(line):
+	partone = line[0]
+	parttwo = line[1].rstrip().split()
+
 """
 findWriter
 """
-def findWriter(line):
-	print line
 
-
+def myfileInput(file):
+	for line in fileinput.input([file]):
+		find_Writer(line.rstrip().split('|'))
 """
 Main method takes the input, strips and splits it into a string list
 """
-def myfileInput(file):
-
-	for line in fileinput.input([file]):
-		findWriter(line.rstrip().split())
-
 
 if __name__=="__main__":
 	myfileInput(sys.argv[1])
