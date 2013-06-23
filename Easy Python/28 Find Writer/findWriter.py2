@@ -7,9 +7,18 @@ import fileinput
 def find_Writer(line):
 	partone = line[0]
 	parttwo = line[1].rstrip().split()
+	parttwo = map(int,parttwo)
+
+	output = ''
+	for num in parttwo:
+		output += partone[num-1]
+
+	print output
+
+
 
 """
-findWriter
+find_Writer
 """
 
 def myfileInput(file):
