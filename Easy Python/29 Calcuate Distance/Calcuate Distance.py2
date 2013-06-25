@@ -2,33 +2,62 @@
 
 import sys
 import fileinput
+import math
+import re
 
+class Point(object):
+	"""
+	Point class for X Y Points
+	contains an init and distance method only
+	"""
+	def __init__(self, x,y):
+		self.X = x
+		self.Y = y
 
-def find_Writer(line):
-	print line
+	def distance(self, other):
+		dx = self.X - other.X
+		dy = self.Y - other.Y
+		return int(math.sqrt(dx**2 + dy**2))
 
+def find_numbers(line):
+	value = ''
+	out = ''
+	for char in line:
+		if '-' in char:
+			value = '-'+re.sub("[^0-9]", "", char)
+		else:
+			value = re.sub("[^0-9]", "", char)
+		out += " "+value
+	make_points(out.split())
 """
-Find distance between two points
+find_numbers
+input: a list, containing 4 values, a number with clutter
+
+objective:
+strip brackets and obtain a list of 4 numbers, catching minus numbers
+then passes them on to the next method
+"""
+def make_points(list):
+	int_list = [int(s) for s in list]
+	a = Point(int_list[0], int_list[1])
+	b = Point(int_list[2], int_list[3])
+	print (a.distance(b))
+"""
+make_points
+input: list containing 4 numbers
+
+Objective:
+Converts list to int
+makes two point objects and calcuates the distance between the Points
+
 """
 
 def myfileInput(file):
 	for line in fileinput.input([file]):
-		find_Writer(line.rstrip().split('|'))
+		find_numbers(line.rstrip().split())
 """
 Main method takes the input, strips and splits it into a string list
 """
 
 if __name__=="__main__":
 	myfileInput(sys.argv[1])
-
-
-"""
-	>>> class Point(object):
-...     def __init__(self, x, y):
-...         self.x, self.y = x, y
-...     def __str__(self):
-...         return 'Point({self.x}, {self.y})'.format(self=self)
-...
->>> str(Point(4, 2))
-'Point(4, 2)'
-	"""
