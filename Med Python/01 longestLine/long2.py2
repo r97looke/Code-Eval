@@ -1,0 +1,39 @@
+#!/usr/bin/env python
+
+import sys
+import fileinput
+
+def update_list(listy, stringy):
+	"""
+	updates our list with the new line
+	"""
+	if len(stringy) > len(listy[0]):
+		listy[0] = stringy
+	else:
+		listy[1] = stringy
+	#since we know n is 2 we can skip the sorting
+	#listy.sort(key = len)
+	#listy.reverse()
+	return listy
+
+
+def file_input(line):
+	nth = 0
+	myList = []
+	for line in fileinput.input([line]):
+		if nth == 0:
+			nth = int(line)
+		else:
+			if len(myList) != nth:
+				myList.append(line)
+			else:
+				if len(myList[-1]) < len(line):
+					myList = update_list(myList,line)
+	
+	for x in myList:
+		print x
+	
+
+
+if __name__=="__main__":
+	file_input(sys.argv[1])
