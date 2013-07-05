@@ -3,17 +3,26 @@
 import sys
 import fileinput
 
-def file_input(line):
-
+def fine_cycle(line):
+	"""
+	Takes a line of numbers and outputs any number that occures more than once
+	"""
 	numbers = set()
+	seq = set()
+	for x in line:
+		if x not in numbers:
+			numbers.add(x)
+		else:
+			if x not in seq:
+				seq.add(x)
+				print x,
+
+
+def file_input(line):
 	for line in fileinput.input([line]):
 		line = line.split()
-		for x in line:
-			if x not in numbers:
-				numbers.add(x)
-			else:
-				print x
-	
+		fine_cycle(line)
+		print ''
 
 
 if __name__=="__main__":
