@@ -6,7 +6,15 @@ import json
 
 def myfileInput(file):
 	for line in fileinput.input([file]):
-		print line
+		#print line
+		json_encoded = json.dumps(line)
+		print json_encoded
+		encoded_data = json.loads(json_encoded)
+		print encoded_data
+
+		#now we have the json data as python data.
+		#play with it
+
 
 if __name__=="__main__":
 	myfileInput(sys.argv[1])
