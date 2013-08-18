@@ -1,20 +1,22 @@
 #!/usr/bin/env python
+"""
+item_list = []
+for item in json_object['menu']['items']:
+    if item is not None:
+        item_list.append(item)
 
-import sys
-import fileinput
+
+"""
 import json
+import sys
+ 
+def main():
+	with open(sys.argv[1]) as f:
+		json_objects = (json.loads(l) for l in f) #reads in the whole file
+		for json_object in json_objects: # does the operation line by line
+			items = (item for item in json_object['menu']['items'] if item)
+			id_label_items = (item['id'] for item in items if 'label' in item)
+			print sum(id_label_items)
+if __name__=='__main__':
+	main()
 
-def myfileInput(file):
-	for line in fileinput.input([file]):
-		#print line
-		json_encoded = json.dumps(line)
-		print json_encoded
-		encoded_data = json.loads(json_encoded)
-		print encoded_data
-
-		#now we have the json data as python data.
-		#play with it
-
-
-if __name__=="__main__":
-	myfileInput(sys.argv[1])
