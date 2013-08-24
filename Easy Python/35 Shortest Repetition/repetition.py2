@@ -4,14 +4,14 @@ import sys
 def main():
 	with open(sys.argv[1]) as f:
 		for l in f:
-			print l
-
-		#build a list of all previously seen
-		#list =l[0]
-		#if l[1] not in list
-		#list append l[1]
-
-		#loop for next char
+			l = l.strip()
+			seen = set() 
+			count = 0
+			for char in l:
+				if char not in seen:
+					seen.add(char)
+					count = count+1
+			print count
 
 if __name__=="__main__":
    main()
