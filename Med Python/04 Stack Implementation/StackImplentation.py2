@@ -1,0 +1,18 @@
+#!/usr/bin/env python
+import sys
+def main():
+	with open(sys.argv[1]) as f:
+		for l in f:
+			l = l.split() 
+			stack = []
+			for number in l:
+				stack.append(number)
+			stack = stack[::-1]
+			#outstack = stack[::2]
+			for x in stack[::2]:
+				print x,
+			print ''
+
+
+if __name__=="__main__":
+   main()
