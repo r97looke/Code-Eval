@@ -1,12 +1,24 @@
 #!/usr/bin/env python
 import sys
-import string
 
+"""
+remove_char takes a list with two string, 0, is the main string, 1 is the chars to remove_char
+we removed the chars and return the main string
+"""
+def remove_char(l):
+    for x in l[1]:
+        l[0] = l[0].replace(x,"")
+    return l[0]
+
+"""
+main reads the file, takes the line, strips and splits it for the remove_char function.
+"""
 def main():
     with open(sys.argv[1]) as f:
         for l in f:
             if len(l) > 1: #ignores the blank lines
-                for x in l:
-                    print l
+                l = l.strip().split(',')
+                l[1] = l[1].strip()
+                print remove_char(l)
 if __name__=="__main__":
     main()
