@@ -1,0 +1,18 @@
+#!/usr/bin/env python
+import sys
+def list_out(out):
+    for x in out:
+        print x,
+    print ''
+def mult_lists(one,two):
+    out = []
+    for x in range(len(one)):
+        out.append(int(one[x])*int(two[x]))
+    return list_out(out)
+def main():
+    with open(sys.argv[1]) as f:
+        for l in f:
+            l = l.strip().split('|')
+            mult_lists(l[0].strip().split(" "),l[1].strip().split(" "))
+if __name__=="__main__":
+   main()
