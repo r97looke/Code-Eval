@@ -1,2 +1,6 @@
 some line with text
+<<<<<<< HEAD
 another line
+=======
+another line
+>>>>>>> completed 36 easy, started 37
