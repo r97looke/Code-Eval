@@ -4,9 +4,17 @@ def swap_elements(line,swaps):
     """
     This function takes in two lists and swaps elements in the first based off the second
     """
-    print line.split()
-    print swaps.strip().split(':')
-    return 'END'
+    line = line.split()
+    swaps = swaps.strip().split(',')
+    tmp = ''
+    run = ''
+    for x in swaps:
+        run = x.strip().split('-')
+        run = map(int,run)
+        tmp = line[run[0]]
+        line[run[0]] = line[run[1]]
+        line[run[1]] = tmp
+    return line
 
 def main():
     with open(sys.argv[1]) as f:
