@@ -3,6 +3,14 @@ import sys
 def swap_elements(line,swaps):
     """
     This function takes in two lists and swaps elements in the first based off the second
+
+    Input:
+    A list of numbers in string format '1,2,3,4,5,6,7,8,9' seperated by ',''
+    A list of swaps to make, seperated by ',' from different swaps and '-' seperating the swap pair.
+
+    Output:
+    Prints to standward output the resulting number list after the swaps are made
+
     """
     line = line.split()
     swaps = swaps.strip().split(',')
@@ -14,13 +22,15 @@ def swap_elements(line,swaps):
         tmp = line[run[0]]
         line[run[0]] = line[run[1]]
         line[run[1]] = tmp
-    return line
+    for value in line:
+        print value,
+    print ''
 
 def main():
     with open(sys.argv[1]) as f:
         for line in f:
             line = line.strip().split(':')
-            print swap_elements(line[0],line[1])
+            swap_elements(line[0],line[1])
             
 if __name__=="__main__":
     main()
