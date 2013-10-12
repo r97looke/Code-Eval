@@ -1,0 +1,66 @@
+#!/usr/bin/env python
+import sys
+def get_string(list):
+    """
+    Function to help build the output string.
+    Takes a list and outputs a string in the format needed
+
+    Input: One list
+    Output: A String obtained for the input string
+    """
+    outstring = ''
+    if len(list)>1:
+        for n in list:
+            outstring = outstring+ n+','
+    return outstring[:-1]
+def printing_output(word,num):
+    """
+    Take two lists and formats them correctly for output
+
+    Input: Two lists
+    Output: None, prints result string.
+    """
+    outstring = ''
+    outstring = get_string(word)
+    if len(outstring)and len(num) >1:
+        outstring = outstring+'|'
+    outstring = outstring +get_string(num)
+    print outstring
+def is_number(s):
+    """
+    Simple function to determine of a string is a number
+    Returns True if the input is a number, False if it is not.
+
+    Input:  one variable
+    Output: True/False
+    """
+    try:
+        float(s)
+        return True
+    except ValueError:
+        return False
+def mixed_content(list):
+    """
+    Takes a list and splits it into two.
+    One for numbers and one for words.
+    It then formats a string of these lists and prints it
+
+    """
+
+    number = []
+    words = []
+    for l in list:
+        if is_number(l):
+            number.append(l)
+        else:
+            words.append(l)
+    printing_output(words,number)
+def main():
+    """
+    Main function that handles file input
+    """
+    with open(sys.argv[1]) as f:
+        for l in f:
+            mixed_content(l.strip().split(','))
+if __name__=="__main__":
+   main()
