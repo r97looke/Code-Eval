@@ -1,0 +1,27 @@
+#!/usr/bin/env python
+import sys
+def reverse_and_add(line):
+    """
+    Input:  A number
+
+    Output: Sum of the input number and itself in reverse order
+    """
+    return int(line)+int(line[::-1])
+def main():
+    """
+    This main method reads a file line by line.
+    It expect a single number on each line.
+
+    This number is reversed and added to its orginal ordering.
+    This process is repetead until it becomes a palindrome
+    """
+    with open(sys.argv[1]) as f:
+        for line in f:
+            count = 0
+            while line != line[::-1]:
+                line = str(reverse_and_add(line))
+                count +=1
+            print str(count)+' '+line
+            
+if __name__=="__main__":
+    main()
