@@ -1,0 +1,21 @@
+#!/usr/bin/env python
+import sys
+def main():
+    """
+    This program takes in a file from the commandline, this file has morsecode seperated by single spaces.
+    Two spaces seperate words and only letters and numbers are supported.
+
+    This method is solved by an inbuilt dictionary list that the morsecode input it compared with to find the values.
+    """
+    with open(sys.argv[1]) as f:
+        for line in f:
+            morsecode = {'.-':'A','-...':'B','-.-.':'C','-..':'D','.':'E','..-.':'F','--.':'G','....':'H','..':'I','.---':'J','-.-':'K','.-..':'L','--':'M','-.':'N','---':'O','.--.':'P','--.-':'Q','.-.':'R','...':'S','-':'T','..-':'U','...-':'V','.--':'W','-..-':'X','-.--':'Y','--..':'Z','.----':'1','..---':'2','...--':'3','....-':'4','.....':'5','-....':'6','--...':'7','---..':'8','----.':'9','-----':'0','':' '}
+            line = line.strip().split(' ')
+
+            output = ''
+            for letter in line:
+                output += morsecode[str(letter)]
+            print output
+            
+if __name__=="__main__":
+   main()
