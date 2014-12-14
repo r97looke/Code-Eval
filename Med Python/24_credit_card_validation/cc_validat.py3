@@ -2,30 +2,33 @@
 import sys
 def processList(line):
     """
-    takes a list of numbers, doubles every second number.
-    If greater than 9, we sum the digits
+    Takes a list of numbers and sums them. 
+    Every second number is doubled. If greater than 9, we sum the digits.
+    We then mod the sum, if it is 0, return 0. Else return 1
     """
     sumOfLine = 0
     tempNum = 0
+    testing = ''
     for each in range(len(line)): #iterate through the line
         if each % 2 == 1: #for every second number
-            
-            #This just got too complex, break this part into its own def
-            tempNum = line[each] * 2
-            if tempNum > 9:
-                tempNum = tempNum[0] + tempNum[1]
+            tempNum = line[each] * 2#double it
+            if tempNum > 9: #if greater than 9
+                testing = str(tempNum)
+                sumOfLine += int(testing[0]) + int(testing[1])
         else:
             sumOfLine += line[each]
-    print ""
-    print line
-    return line#placeholder
+    sumOfLine = sumOfLine % 10
+    if sumOfLine > 0:
+        return 0 
+    else:
+        return 1
 def formatLine(line):
     """
     Converts a formatted string into reversed int list without whitespace
     """
-    line = line.replace(" ", "")#replaces whitespace with nothing
+    line = line.replace(" ", "")#removes whitespace
     outlist = []
-    print "Input line: "+line
+    print "input line : "+line
     for each in list(line[::-1]): #iterates through the revered string
         outlist.append(int(each)) #appends each number as an int
     return outlist
@@ -33,8 +36,6 @@ def main():
     with open(sys.argv[1]) as f:
         for line in f:
             workingList = formatLine(line.strip())
-            print "Reversed Line: ",workingList
-            processList(workingList)
-            print ''
+            print (processList(workingList))
 if __name__=="__main__":
     main()
