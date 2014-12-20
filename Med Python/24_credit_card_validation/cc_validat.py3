@@ -14,7 +14,7 @@ def processList(line):
             tempNum = line[each] * 2#double it
             if tempNum > 9: #if greater than 9
                 testing = str(tempNum)
-                sumOfLine += int(testing[0]) + int(testing[1])
+                sumOfLine += int(testing[0]) + int(testing[1]) #Add the value of the digits
         else:
             sumOfLine += line[each]
     sumOfLine = sumOfLine % 10
@@ -28,7 +28,6 @@ def formatLine(line):
     """
     line = line.replace(" ", "")#removes whitespace
     outlist = []
-    print "input line : "+line
     for each in list(line[::-1]): #iterates through the revered string
         outlist.append(int(each)) #appends each number as an int
     return outlist
