@@ -3,7 +3,7 @@ import sys
 import string
 def processInput(inputList):
     instructions = getInstructions(inputList[1])
-    print (processLine(instructions,inputList[0]))
+    print processLine(instructions,inputList[0])
 
 def getInstructions(inputString):
     """
