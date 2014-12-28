@@ -28,12 +28,12 @@ def processLine(instructions,number):
         return int(firstHalf) + int(secondHalf)
     else:
         return int(firstHalf) - int(secondHalf)
-
     return "This should never execute"
 
 def main():
     with open(sys.argv[1]) as f:
         for line in f:
+            #print (line.strip())
             processInput(line.strip().split())
 if __name__=="__main__":
     main()
